@@ -63,21 +63,28 @@ export const TypingProvider = ({ children }) => {
   // 🧮 Final Result Calculations
   // ----------------------
   const calculateResults = () => {
-    
-    const wordsTyped = typedText.trim().split(" ").length;
+  const correctChars = typedText
+    .split("")
+    .filter((c, i) => c === text[i]).length;
 
-    const correctChars = typedText
-      .split("")
-      .filter((c, i) => c === text[i]).length;
+  const totalTimeUsed = selectedTime - timeLeft;
 
-    const totalTimeUsed = selectedTime - timeLeft;
+  if (totalTimeUsed === 0) {
+    setWpm(0);
+    setAccuracy(0);
+    return;
+  }
 
-    const accuracyVal = Math.round((correctChars / typedText.length) * 100);
-    const wpmVal = Math.round((wordsTyped / totalTimeUsed) * 60);
+  const accuracyVal = typedText.length
+    ? Math.round((correctChars / typedText.length) * 100)
+    : 0;
 
-    setAccuracy(accuracyVal || 0);
-    setWpm(wpmVal || 0);
-  };
+  const wpmVal = Math.round((correctChars / 5) / (totalTimeUsed / 60));
+
+  setAccuracy(accuracyVal);
+  setWpm(wpmVal);
+};
+
 
   // ----------------------
   // 🔄 Restart Test
