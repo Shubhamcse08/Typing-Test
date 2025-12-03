@@ -1,2 +1,2 @@
 live demo available
-https://typing-test-opal-delta.vercel.app/result
+https://typing-test-opal-delta.vercel.app
