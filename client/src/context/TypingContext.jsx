@@ -63,6 +63,7 @@ export const TypingProvider = ({ children }) => {
   // 🧮 Final Result Calculations
   // ----------------------
   const calculateResults = () => {
+    
     const wordsTyped = typedText.trim().split(" ").length;
 
     const correctChars = typedText
@@ -71,7 +72,7 @@ export const TypingProvider = ({ children }) => {
 
     const totalTimeUsed = selectedTime - timeLeft;
 
-    const accuracyVal = Math.round((correctChars / text.length) * 100);
+    const accuracyVal = Math.round((correctChars / typedText.length) * 100);
     const wpmVal = Math.round((wordsTyped / totalTimeUsed) * 60);
 
     setAccuracy(accuracyVal || 0);
